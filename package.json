@@ -1,0 +1,24 @@
+{
+  "name": "andersern-internship-js-tasks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Natada122/andersen-internship-js-tasks.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Natada122/andersen-internship-js-tasks/issues"
+  },
+  "homepage": "https://github.com/Natada122/andersen-internship-js-tasks#readme",
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  }
+}
