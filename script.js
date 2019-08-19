@@ -1,3 +1,4 @@
+/*
 const Universe = (function() {
   var instance;
   return function() {
@@ -12,8 +13,26 @@ const Universe = (function() {
     return (instance = this);
   };
 })();
-let a = new Universe();
-let b = new Universe();
+*/
+class Universe {
+  constructor() {
+    if (!Universe.instance) {
+      this.size = 100;
+      Universe.instance = this;
+    }
+    return Universe.instance;
+  }
+
+  getSize() {
+    return this.size;
+  }
+
+  setSize(size) {
+    this.size = size;
+  }
+}
+const a = new Universe();
+const b = new Universe();
 
 console.log(a === b); // должны получить true
 
