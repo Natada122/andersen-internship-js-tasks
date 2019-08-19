@@ -1,24 +1,27 @@
 function Person(name) {
-  this.name = name;
-  this.getName = function () {
-    return this.name;
+  const that = {};
+  that.name = name;
+  that.getName = function () {
+    return that.name;
   };
+  return that;
 }
 function Man(name, facialHair) {
-  Person.call(this, name);
-  this.facialHair = facialHair;
-  this.getFacialHair = function () {
+  const that = Person(name);
+  that.facialHair = facialHair;
+  that.getFacialHair = function () {
     return this.facialHair;
   };
-  const parentGetName = this.getName;
-  this.getName = function () {
+  const parentGetName = that.getName;
+  that.getName = function () {
     return `Name: ${parentGetName.call(this)}`;
   };
+  return that;
 }
 
-const person = new Person('somebody');
+const person = Person('somebody');
 console.log(person.getName()); // somebody
 
-const man = new Man('Viktor', true);
+const man = Man('Viktor', true);
 console.log(man.getName()); // Name: Viktor
 console.log(man.getFacialHair()); // true
