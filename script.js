@@ -14,16 +14,17 @@ delay(8000).then((value) => console.log(`Done with ${value}`));
 Напиши функцию в которой будет запрос на http://www.json-generator.com/api/json/get/cfQCylRjuG,
 из ответа ты получишь поле getUsersData, если значение равно true
 получи и выведи в консоль данные из http://www.json-generator.com/api/json/get/cfVGucaXPC
+*/
+/*
 function request() {
-  fetch('http://www.json-generator.com/api/json/get/cfQCylRjuG').then(
-    (responseFirst) => responseFirst.json().then(({ getUsersData }) => {
-      if (getUsersData) {
-        fetch('http://www.json-generator.com/api/json/get/cfVGucaXPC').then((responseSecond) => responseSecond.json().then(
-          (data) => console.log(data),
-        ));
-      }
-    }),
-  );
+  fetch('http://www.json-generator.com/api/json/get/cfQCylRjuG')
+    .then((responseFirst) => responseFirst.json()
+      .then(({ getUsersData }) => {
+        if (getUsersData) {
+          return fetch('http://www.json-generator.com/api/json/get/cfVGucaXPC');
+        }
+      }).then((responseSecond) => responseSecond.json()
+        .then((data) => console.log(data))));
 }
 request();
 */
@@ -44,15 +45,19 @@ const URLS = [
 ];
 const promises = URLS.map((value) => fetch(value));
 function Parallel() {
-  Promise.all(promises).then((response) => response.map((value) => value.json().then((data) => console.log(data))));
+  Promise.all(promises).then((results) => console.log(results.map((data) => data.json())));
 }
 function NotParallel() {
-  promises.reduce(
-    (curPromise, nextPromise) => curPromise.then(() => nextPromise.then((value) => value.json().then((data) => console.log(data)))),
-    Promise.resolve());
+  promises
+    .reduce(
+      (curPromise, nextPromise) => curPromise.then(() => nextPromise.then((data) => data.json())),
+      Promise.resolve(),
+    )
+    .then(() => console.log(promises));
 }
 NotParallel();
-Parallel(); */
+// Parallel();
+*/
 // =====================================================
 /* Написать функцию getResolvedPromise(value),
 которая возвращает зарезолвленный промис с значением value.
